@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubsidySeva - Discover Government Subsidies</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">
+                    <i class="fas fa-university me-2"></i>SubsidySeva
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                <i class="fas fa-home me-1"></i>Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="subsidies.html">
+                                <i class="fas fa-list me-1"></i>All Subsidies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="suggest.html">
+                                <i class="fas fa-plus-circle me-1"></i>Suggest Scheme
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section bg-gradient text-white py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h1 class="display-4 fw-bold mb-4">
+                            Discover Government Subsidies
+                            <span class="text-accent">Made Easy</span>
+                        </h1>
+                        <p class="lead mb-4">
+                            SubsidySeva helps Indian citizens find and access government and private subsidies they are eligible for. 
+                            Search through hundreds of schemes designed for your welfare.
+                        </p>
+                        <div class="d-flex gap-3">
+                            <a href="subsidies.html" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-search me-2"></i>Browse All Subsidies
+                            </a>
+                            <a href="suggest.html" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-plus me-2"></i>Suggest a Scheme
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <div class="hero-icon">
+                            <i class="fas fa-university fa-10x text-accent opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="text-center mb-4 text-primary">
+                                    <i class="fas fa-search me-2"></i>Search Subsidies
+                                </h3>
+                                <div class="input-group input-group-lg">
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="searchInput"
+                                           placeholder="Search by subsidy name, description, or eligibility criteria..."
+                                           aria-label="Search subsidies">
+                                    <button class="btn btn-primary" type="button" onclick="performSearch()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div id="searchResults" class="mt-3 d-none">
+                                    <div id="searchResultsContainer"></div>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary ms-2" onclick="clearSearch()">
+                                        <i class="fas fa-times me-1"></i>Clear Search
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Categories -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 text-primary">Browse by Category</h2>
+                <div class="row g-4">
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Poor/Low Income" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                                    <h5 class="card-title">Poor/Low Income</h5>
+                                    <p class="card-text small">Financial assistance for economically weaker sections</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Women/Girls" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-female fa-3x text-pink mb-3"></i>
+                                    <h5 class="card-title">Women/Girls</h5>
+                                    <p class="card-text small">Empowerment schemes for women and girl children</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Students" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-graduation-cap fa-3x text-success mb-3"></i>
+                                    <h5 class="card-title">Students</h5>
+                                    <p class="card-text small">Educational scholarships and support schemes</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Farmers" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-seedling fa-3x text-secondary mb-3"></i>
+                                    <h5 class="card-title">Farmers</h5>
+                                    <p class="card-text small">Agricultural support and farming assistance</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="row g-4 mt-1">
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Elderly" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-user-friends fa-3x text-info mb-3"></i>
+                                    <h5 class="card-title">Elderly</h5>
+                                    <p class="card-text small">Senior citizen welfare and pension schemes</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Entrepreneurs" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-rocket fa-3x text-warning mb-3"></i>
+                                    <h5 class="card-title">Entrepreneurs</h5>
+                                    <p class="card-text small">Business development and startup support</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Disabled" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-wheelchair fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">Disabled</h5>
+                                    <p class="card-text small">Support schemes for persons with disabilities</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="subsidies.html?category=Widow" class="text-decoration-none">
+                            <div class="card h-100 text-center category-card">
+                                <div class="card-body">
+                                    <i class="fas fa-hands-helping fa-3x text-dark mb-3"></i>
+                                    <h5 class="card-title">Widow</h5>
+                                    <p class="card-text small">Financial support for widowed women</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="py-5 bg-primary text-white">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt fa-3x mb-3"></i>
+                            <h3 class="fw-bold">15+</h3>
+                            <p>Active Subsidy Schemes</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <i class="fas fa-users fa-3x mb-3"></i>
+                            <h3 class="fw-bold">1.3B+</h3>
+                            <p>Citizens Served</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                            <h3 class="fw-bold">All</h3>
+                            <p>States & UTs Covered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-accent mb-3">SubsidySeva</h5>
+                    <p class="mb-2">Empowering citizens with easy access to government and private subsidies.</p>
+                    <p class="mb-0">A Digital India initiative for transparent and accessible governance.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h6 class="text-accent mb-3">Quick Links</h6>
+                    <div class="mb-2">
+                        <a href="index.html" class="text-white text-decoration-none me-3">Home</a>
+                        <a href="subsidies.html" class="text-white text-decoration-none me-3">Subsidies</a>
+                        <a href="suggest.html" class="text-white text-decoration-none">Suggest</a>
+                    </div>
+                    <div class="text-muted small">
+                        <i class="fas fa-flag fa-1x me-1"></i>Serving India with Pride
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="text-center text-muted">
+                <small>&copy; 2024 SubsidySeva. All rights reserved. | Built for the citizens of India</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="static/js/subsidies-data.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>

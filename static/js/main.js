@@ -1,15 +1,12 @@
-// SubsidySeva - Main JavaScript File
+// SubsidySeva - Main JavaScript File (Static Version)
 
 document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize page animations
     initPageAnimations();
     
-    // Initialize form enhancements
-    initFormEnhancements();
-    
-    // Initialize search functionality
-    initSearchEnhancements();
+    // Initialize search functionality for homepage
+    initHomepageSearch();
     
     // Initialize accessibility features
     initAccessibilityFeatures();
@@ -18,6 +15,124 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceOptimizations();
     
 });
+
+/**
+ * Initialize homepage search functionality
+ */
+function initHomepageSearch() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+}
+
+/**
+ * Perform search and display results on homepage
+ */
+function performSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (!searchInput || !searchResults || !searchResultsContainer) return;
+    
+    const query = searchInput.value.trim();
+    if (!query) {
+        clearSearch();
+        return;
+    }
+    
+    // Get search results
+    const subsidies = getActiveSubsidies();
+    const filteredSubsidies = searchSubsidies(subsidies, query);
+    
+    // Display results
+    if (filteredSubsidies.length > 0) {
+        searchResults.classList.remove('d-none');
+        searchResultsContainer.innerHTML = `
+            <div class="mb-3">
+                <span class="badge bg-info">
+                    Showing ${filteredSubsidies.length} results for: "${query}"
+                </span>
+            </div>
+            <div class="row g-4">
+                ${filteredSubsidies.slice(0, 6).map(subsidy => createSearchResultCard(subsidy)).join('')}
+            </div>
+            ${filteredSubsidies.length > 6 ? `
+                <div class="text-center mt-3">
+                    <a href="subsidies.html?search=${encodeURIComponent(query)}" class="btn btn-primary">
+                        <i class="fas fa-list me-2"></i>View All ${filteredSubsidies.length} Results
+                    </a>
+                </div>
+            ` : ''}
+        `;
+    } else {
+        searchResults.classList.remove('d-none');
+        searchResultsContainer.innerHTML = `
+            <div class="text-center py-4">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">No subsidies found</h5>
+                <p class="text-muted">Try searching with different keywords or browse all subsidies.</p>
+                <a href="subsidies.html" class="btn btn-primary">
+                    <i class="fas fa-list me-2"></i>Browse All Subsidies
+                </a>
+            </div>
+        `;
+    }
+}
+
+/**
+ * Clear search results
+ */
+function clearSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    
+    if (searchInput) searchInput.value = '';
+    if (searchResults) searchResults.classList.add('d-none');
+}
+
+/**
+ * Create search result card HTML
+ */
+function createSearchResultCard(subsidy) {
+    const categoryBadges = subsidy.categories.map(category => 
+        `<span class="badge bg-success me-1">${category}</span>`
+    ).join('');
+    
+    return `
+        <div class="col-lg-6">
+            <div class="card h-100 subsidy-card">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">${subsidy.title}</h5>
+                    <p class="card-text">${subsidy.description}</p>
+                    
+                    <div class="mb-3">
+                        <strong class="text-secondary">Eligibility:</strong>
+                        <p class="small mb-0">${subsidy.eligibility}</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        ${categoryBadges}
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong class="text-accent">${subsidy.amount}</strong>
+                        </div>
+                        <a href="${subsidy.application_link}" target="_blank" class="btn btn-primary btn-sm" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt me-1"></i>Apply Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 /**
  * Initialize page animations and transitions

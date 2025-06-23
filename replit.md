@@ -2,17 +2,17 @@
 
 ## Overview
 
-SubsidySeva is a Flask-based web application that helps Indian citizens discover and access government and private subsidies. The platform allows users to search through various schemes, filter by categories, and suggest new subsidies for community benefit.
+SubsidySeva is a static HTML website that helps Indian citizens discover and access government and private subsidies. The platform allows users to search through various schemes, filter by categories, and suggest new subsidies for community benefit. Built as a pure client-side application for easy hosting and deployment.
 
 ## System Architecture
 
-The application follows a simple Flask MVC architecture with JSON-based data storage and database-ready design:
+The application is now a static HTML website with authentic government subsidy data:
 
-- **Frontend**: Bootstrap-based responsive web interface with custom CSS styling and improved text visibility
-- **Backend**: Flask web framework with Gunicorn WSGI server
-- **Data Storage**: Enhanced JSON files with 15 authentic government subsidies from web scraping
-- **Database Ready**: MySQL/PostgreSQL schema and connection configuration prepared for easy migration
-- **Deployment**: Autoscale deployment on Replit
+- **Frontend**: Pure HTML5, CSS3, and JavaScript with Bootstrap 5 responsive framework
+- **Data Storage**: JavaScript-based data with 15 authentic government subsidies from official sources
+- **Styling**: Government portal-inspired design with proper text visibility and accessibility
+- **Database Ready**: MySQL/PostgreSQL schema and connection configuration for future migration
+- **Deployment**: Static files that can be hosted anywhere (GitHub Pages, Netlify, any web server)
 
 ## Key Components
 
@@ -80,7 +80,8 @@ Changelog:
 - June 23, 2025: Enhanced with web scraping for authentic government subsidy data (15 schemes)
 - June 23, 2025: Fixed text visibility issues - improved contrast for dark grey text on light backgrounds
 - June 23, 2025: Created MySQL/PostgreSQL database schema and connection configuration for easy migration
-- June 23, 2025: Added database_config.py with complete SQL schema and connection instructions
+- June 23, 2025: Converted from Flask webapp to static HTML website per user request
+- June 23, 2025: Implemented client-side JavaScript functionality for search, filtering, and form handling
 ```
 
 ## User Preferences
