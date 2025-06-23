@@ -1,16 +1,21 @@
 import json
 import os
 from datetime import datetime
-from flask import render_template, request, redirect, url_for, flash, jsonify
+from flask import render_template, request, redirect, url_for, flash
 from app import app
 
 def load_subsidies():
     """Load subsidies from JSON file"""
     try:
-        with open('data/subsidies.json', 'r', encoding='utf-8') as f:
+        with open('data/subsidies_enhanced.json', 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        return []
+        # Fallback to original data if enhanced file doesn't exist
+        try:
+            with open('data/subsidies.json', 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return []
 
 def save_suggestion(suggestion):
     """Save suggestion to JSON file"""

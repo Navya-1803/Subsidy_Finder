@@ -23,6 +23,48 @@ body {
     line-height: 1.6;
 }
 
+/* Ensure text visibility on dark backgrounds */
+.bg-primary .card-text, 
+.bg-primary .card-title,
+.bg-primary p,
+.bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5, .bg-primary h6,
+.bg-gradient .card-text,
+.bg-gradient .card-title,
+.bg-gradient p,
+.bg-gradient h1, .bg-gradient h2, .bg-gradient h3, .bg-gradient h4, .bg-gradient h5, .bg-gradient h6 {
+    color: white !important;
+}
+
+.category-card .card-text,
+.category-card .card-title {
+    color: var(--text-color) !important;
+}
+
+/* Fix text visibility on cards with light backgrounds */
+.card .card-text,
+.card .card-title,
+.card p,
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+    color: var(--text-color) !important;
+}
+
+/* Ensure subsidy card text is visible */
+.subsidy-card .card-body .card-text,
+.subsidy-card .card-body p,
+.subsidy-card .card-body .small {
+    color: var(--text-color) !important;
+}
+
+/* Fix muted text to be visible */
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Better contrast for small text */
+.small {
+    color: var(--text-color) !important;
+}
+
 /* Override Bootstrap Primary Color */
 .bg-primary {
     background-color: var(--primary-color) !important;

@@ -6,12 +6,13 @@ SubsidySeva is a Flask-based web application that helps Indian citizens discover
 
 ## System Architecture
 
-The application follows a simple Flask MVC architecture with JSON-based data storage:
+The application follows a simple Flask MVC architecture with JSON-based data storage and database-ready design:
 
-- **Frontend**: Bootstrap-based responsive web interface with custom CSS styling
+- **Frontend**: Bootstrap-based responsive web interface with custom CSS styling and improved text visibility
 - **Backend**: Flask web framework with Gunicorn WSGI server
-- **Data Storage**: JSON files for subsidies and user suggestions
-- **Deployment**: Autoscale deployment on Replit with PostgreSQL support configured
+- **Data Storage**: Enhanced JSON files with 15 authentic government subsidies from web scraping
+- **Database Ready**: MySQL/PostgreSQL schema and connection configuration prepared for easy migration
+- **Deployment**: Autoscale deployment on Replit
 
 ## Key Components
 
@@ -21,9 +22,12 @@ The application follows a simple Flask MVC architecture with JSON-based data sto
 - `routes.py`: Contains all route handlers and business logic
 
 ### Data Management
-- `data/subsidies.json`: Static JSON file containing subsidy information
+- `data/subsidies_enhanced.json`: Enhanced JSON file with 15 authentic government subsidies from web scraping
+- `data/subsidies.json`: Original JSON file (fallback)
 - `data/suggestions.json`: Dynamic JSON file storing user-submitted scheme suggestions
-- JSON-based CRUD operations for reading subsidies and saving suggestions
+- `database_config.py`: MySQL/PostgreSQL schema and connection configuration for easy database migration
+- `subsidies_database.sql`: Complete database schema with sample data
+- JSON-based CRUD operations with database-ready architecture
 
 ### Frontend Components
 - `templates/base.html`: Base template with Bootstrap integration and navigation
@@ -72,7 +76,11 @@ The application follows a simple Flask MVC architecture with JSON-based data sto
 
 ```
 Changelog:
-- June 23, 2025. Initial setup
+- June 23, 2025: Initial setup with Flask architecture and government portal design
+- June 23, 2025: Enhanced with web scraping for authentic government subsidy data (15 schemes)
+- June 23, 2025: Fixed text visibility issues - improved contrast for dark grey text on light backgrounds
+- June 23, 2025: Created MySQL/PostgreSQL database schema and connection configuration for easy migration
+- June 23, 2025: Added database_config.py with complete SQL schema and connection instructions
 ```
 
 ## User Preferences
