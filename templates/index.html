@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block title %}SubsidySeva - Discover Government Subsidies{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    Discover Government Subsidies
+                    <span class="text-accent">Made Easy</span>
+                </h1>
+                <p class="lead mb-4">
+                    SubsidySeva helps Indian citizens find and access government and private subsidies they are eligible for. 
+                    Search through hundreds of schemes designed for your welfare.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('subsidies') }}" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-search me-2"></i>Browse All Subsidies
+                    </a>
+                    <a href="{{ url_for('suggest_scheme') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-plus me-2"></i>Suggest a Scheme
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="hero-icon">
+                    <i class="fas fa-university fa-10x text-accent opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h3 class="text-center mb-4 text-primary">
+                            <i class="fas fa-search me-2"></i>Search Subsidies
+                        </h3>
+                        <form method="GET" action="{{ url_for('index') }}">
+                            <div class="input-group input-group-lg">
+                                <input type="text" 
+                                       class="form-control" 
+                                       name="search" 
+                                       value="{{ search_query or '' }}"
+                                       placeholder="Search by subsidy name, description, or eligibility criteria..."
+                                       aria-label="Search subsidies">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                        {% if search_query %}
+                            <div class="mt-3">
+                                <span class="badge bg-info">
+                                    Showing results for: "{{ search_query }}"
+                                </span>
+                                <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-secondary ms-2">
+                                    <i class="fas fa-times me-1"></i>Clear Search
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Categories -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 text-primary">Browse by Category</h2>
+        <div class="row g-4">
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Poor/Low Income') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">Poor/Low Income</h5>
+                            <p class="card-text small text-muted">Financial assistance for economically weaker sections</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Women/Girls') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-female fa-3x text-pink mb-3"></i>
+                            <h5 class="card-title">Women/Girls</h5>
+                            <p class="card-text small text-muted">Empowerment schemes for women and girl children</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Students') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-graduation-cap fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Students</h5>
+                            <p class="card-text small text-muted">Educational scholarships and support schemes</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Farmers') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-seedling fa-3x text-secondary mb-3"></i>
+                            <h5 class="card-title">Farmers</h5>
+                            <p class="card-text small text-muted">Agricultural support and farming assistance</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="row g-4 mt-1">
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Elderly') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-user-friends fa-3x text-info mb-3"></i>
+                            <h5 class="card-title">Elderly</h5>
+                            <p class="card-text small text-muted">Senior citizen welfare and pension schemes</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Entrepreneurs') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-rocket fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Entrepreneurs</h5>
+                            <p class="card-text small text-muted">Business development and startup support</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Disabled') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-wheelchair fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Disabled</h5>
+                            <p class="card-text small text-muted">Support schemes for persons with disabilities</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="{{ url_for('subsidies', category='Widow') }}" class="text-decoration-none">
+                    <div class="card h-100 text-center category-card">
+                        <div class="card-body">
+                            <i class="fas fa-hands-helping fa-3x text-dark mb-3"></i>
+                            <h5 class="card-title">Widow</h5>
+                            <p class="card-text small text-muted">Financial support for widowed women</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Results -->
+{% if search_query %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <h3 class="mb-4">
+            Search Results 
+            <span class="badge bg-primary">{{ subsidies|length }} found</span>
+        </h3>
+        
+        {% if subsidies %}
+            <div class="row g-4">
+                {% for subsidy in subsidies %}
+                <div class="col-lg-6">
+                    <div class="card h-100 subsidy-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ subsidy.title }}</h5>
+                            <p class="card-text">{{ subsidy.description }}</p>
+                            
+                            <div class="mb-3">
+                                <strong class="text-secondary">Eligibility:</strong>
+                                <p class="small mb-0">{{ subsidy.eligibility }}</p>
+                            </div>
+                            
+                            <div class="mb-3">
+                                {% for category in subsidy.categories %}
+                                    <span class="badge bg-success me-1">{{ category }}</span>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong class="text-accent">{{ subsidy.amount }}</strong>
+                                </div>
+                                <a href="{{ subsidy.application_link }}" target="_blank" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Apply Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-search fa-5x text-muted mb-3"></i>
+                <h4 class="text-muted">No subsidies found</h4>
+                <p class="text-muted">Try searching with different keywords or browse all subsidies.</p>
+                <a href="{{ url_for('subsidies') }}" class="btn btn-primary">
+                    <i class="fas fa-list me-2"></i>Browse All Subsidies
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Statistics Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="stat-item">
+                    <i class="fas fa-file-alt fa-3x mb-3"></i>
+                    <h3 class="fw-bold">8+</h3>
+                    <p>Active Subsidy Schemes</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-item">
+                    <i class="fas fa-users fa-3x mb-3"></i>
+                    <h3 class="fw-bold">1.3B+</h3>
+                    <p>Citizens Served</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-item">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                    <h3 class="fw-bold">All</h3>
+                    <p>States & UTs Covered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

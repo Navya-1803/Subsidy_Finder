@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}All Subsidies - SubsidySeva{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-5 fw-bold text-primary mb-3">
+                    <i class="fas fa-list me-3"></i>Government Subsidies
+                </h1>
+                <p class="lead text-muted">
+                    Browse through available government and private subsidies. Use filters to find schemes relevant to your category.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filters Section -->
+<section class="py-4 bg-white border-bottom">
+    <div class="container">
+        <form method="GET" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="search" class="form-label fw-semibold">Search Subsidies</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="search"
+                       name="search" 
+                       value="{{ search_query or '' }}"
+                       placeholder="Search by name, description, eligibility...">
+            </div>
+            
+            <div class="col-md-4">
+                <label for="category" class="form-label fw-semibold">Filter by Category</label>
+                <select class="form-select" id="category" name="category">
+                    <option value="">All Categories</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}" {% if cat == current_category %}selected{% endif %}>
+                            {{ cat }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="fas fa-filter me-1"></i>Apply Filters
+                </button>
+                <a href="{{ url_for('subsidies') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-times me-1"></i>Clear
+                </a>
+            </div>
+        </form>
+        
+        <!-- Active Filters Display -->
+        {% if current_category or search_query %}
+        <div class="mt-3">
+            <span class="text-muted me-2">Active filters:</span>
+            {% if search_query %}
+                <span class="badge bg-info me-2">
+                    Search: "{{ search_query }}"
+                </span>
+            {% endif %}
+            {% if current_category %}
+                <span class="badge bg-success me-2">
+                    Category: {{ current_category }}
+                </span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Results Section -->
+<section class="py-5">
+    <div class="container">
+        <!-- Results Count -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0">
+                Available Subsidies 
+                <span class="badge bg-primary">{{ subsidies|length }} found</span>
+            </h3>
+            {% if subsidies|length > 0 %}
+                <div class="text-muted">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Click "Apply Now" to visit official application pages
+                </div>
+            {% endif %}
+        </div>
+
+        {% if subsidies %}
+            <!-- Subsidies Grid -->
+            <div class="row g-4">
+                {% for subsidy in subsidies %}
+                <div class="col-lg-6 col-xl-4">
+                    <div class="card h-100 subsidy-card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-university me-2"></i>{{ subsidy.title }}
+                            </h5>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">{{ subsidy.description }}</p>
+                            
+                            <!-- Eligibility -->
+                            <div class="mb-3">
+                                <h6 class="text-secondary mb-2">
+                                    <i class="fas fa-check-circle me-1"></i>Eligibility:
+                                </h6>
+                                <p class="small text-muted mb-0">{{ subsidy.eligibility }}</p>
+                            </div>
+                            
+                            <!-- Categories -->
+                            <div class="mb-3">
+                                {% for category in subsidy.categories %}
+                                    <span class="badge bg-success me-1 mb-1">{{ category }}</span>
+                                {% endfor %}
+                            </div>
+                            
+                            <!-- Amount -->
+                            <div class="mb-3">
+                                <strong class="text-accent h6">
+                                    <i class="fas fa-rupee-sign me-1"></i>{{ subsidy.amount }}
+                                </strong>
+                            </div>
+                            
+                            <!-- Department -->
+                            <div class="mb-3 small text-muted">
+                                <i class="fas fa-building me-1"></i>{{ subsidy.department }}
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-grid">
+                                <a href="{{ subsidy.application_link }}" 
+                                   target="_blank" 
+                                   class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt me-2"></i>Apply Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">
+                            <i class="fas fa-lightbulb me-2"></i>Know of a scheme we missed?
+                        </h5>
+                        <p class="card-text">Help us improve SubsidySeva by suggesting new schemes for other citizens.</p>
+                        <a href="{{ url_for('suggest_scheme') }}" class="btn btn-secondary">
+                            <i class="fas fa-plus me-2"></i>Suggest a New Scheme
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        {% else %}
+            <!-- No Results -->
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="fas fa-search fa-5x text-muted"></i>
+                </div>
+                <h4 class="text-muted mb-3">No subsidies found</h4>
+                <p class="text-muted mb-4">
+                    {% if current_category or search_query %}
+                        No subsidies match your current filters. Try adjusting your search criteria.
+                    {% else %}
+                        No subsidies are currently available in our database.
+                    {% endif %}
+                </p>
+                <div class="d-flex gap-3 justify-content-center">
+                    {% if current_category or search_query %}
+                        <a href="{{ url_for('subsidies') }}" class="btn btn-primary">
+                            <i class="fas fa-list me-2"></i>View All Subsidies
+                        </a>
+                    {% endif %}
+                    <a href="{{ url_for('suggest_scheme') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>Suggest a Scheme
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Pradhan Mantri Awas Yojana",
+    "description": "Housing for All scheme providing financial assistance for construction and purchase of houses for economically weaker sections and low income groups in urban areas.",
+    "eligibility": "Annual household income up to Rs. 18 lakh for urban areas. Family should not own a pucca house in any part of India.",
+    "categories": ["Poor/Low Income"],
+    "application_link": "https://pmaymis.gov.in/",
+    "amount": "Up to Rs. 2.67 lakh subsidy",
+    "department": "Ministry of Housing and Urban Affairs"
+  },
+  {
+    "id": 2,
+    "title": "Pradhan Mantri Kisan Samman Nidhi",
+    "description": "Direct income support scheme for farmers providing Rs. 6,000 per year in three equal installments to eligible farmer families.",
+    "eligibility": "Small and marginal farmers with cultivable land holding up to 2 hectares.",
+    "categories": ["Farmers"],
+    "application_link": "https://pmkisan.gov.in/",
+    "amount": "Rs. 6,000 per year",
+    "department": "Ministry of Agriculture and Farmers Welfare"
+  },
+  {
+    "id": 3,
+    "title": "Beti Bachao Beti Padhao",
+    "description": "Scheme to address declining child sex ratio and related issues of empowerment of women over a life-cycle continuum.",
+    "eligibility": "All girl children and women across India. Focus on 161 gender critical districts.",
+    "categories": ["Women/Girls"],
+    "application_link": "https://wcd.nic.in/bbbp-scheme",
+    "amount": "Various benefits including education support",
+    "department": "Ministry of Women and Child Development"
+  },
+  {
+    "id": 4,
+    "title": "National Scholarship Portal",
+    "description": "One-stop solution for various scholarship schemes for students from pre-matric to post-graduation levels.",
+    "eligibility": "Students from various categories including SC/ST/OBC/Minorities with income criteria varying by scheme.",
+    "categories": ["Students"],
+    "application_link": "https://scholarships.gov.in/",
+    "amount": "Varies by scheme (Rs. 1,000 to Rs. 2,00,000 per year)",
+    "department": "Ministry of Electronics and Information Technology"
+  },
+  {
+    "id": 5,
+    "title": "Pradhan Mantri Vaya Vandana Yojana",
+    "description": "Pension scheme for senior citizens providing guaranteed returns and regular pension for a period of 10 years.",
+    "eligibility": "Citizens aged 60 years and above. Maximum age limit for entry is 79 years.",
+    "categories": ["Elderly"],
+    "application_link": "https://licindia.in/Products/Pension-Plans/Pradhan-Mantri-Vaya-Vandana-Yojana",
+    "amount": "Guaranteed pension of 8% per annum",
+    "department": "Life Insurance Corporation of India"
+  },
+  {
+    "id": 6,
+    "title": "Stand-Up India",
+    "description": "Scheme to facilitate bank loans between Rs. 10 lakh to Rs. 1 crore to SC/ST and women entrepreneurs for setting up greenfield enterprises.",
+    "eligibility": "SC/ST and women entrepreneurs aged 18 years and above for new enterprises in manufacturing, services or trading sector.",
+    "categories": ["Entrepreneurs", "Women/Girls"],
+    "application_link": "https://www.standupmitra.in/",
+    "amount": "Rs. 10 lakh to Rs. 1 crore loan",
+    "department": "Ministry of Financial Services"
+  },
+  {
+    "id": 7,
+    "title": "National Handicapped Finance and Development Corporation",
+    "description": "Financial assistance for skill development, self-employment and entrepreneurship development for persons with disabilities.",
+    "eligibility": "Persons with disabilities having 40% or more disability. Annual family income should not exceed Rs. 3 lakh.",
+    "categories": ["Disabled"],
+    "application_link": "https://nhfdc.nic.in/",
+    "amount": "Up to Rs. 25 lakh for various schemes",
+    "department": "Ministry of Social Justice and Empowerment"
+  },
+  {
+    "id": 8,
+    "title": "National Widow Pension Scheme",
+    "description": "Monthly pension support for widows to ensure social security and financial assistance.",
+    "eligibility": "Widows aged 40-79 years from BPL families. Age criteria may vary by state.",
+    "categories": ["Widow", "Poor/Low Income"],
+    "application_link": "https://nsap.nic.in/",
+    "amount": "Rs. 300-1,000 per month (varies by state)",
+    "department": "Ministry of Rural Development"
+  }
+]

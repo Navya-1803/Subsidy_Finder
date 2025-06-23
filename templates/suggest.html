@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}Suggest a Scheme - SubsidySeva{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-5 fw-bold text-primary mb-3">
+                    <i class="fas fa-plus-circle me-3"></i>Suggest a New Scheme
+                </h1>
+                <p class="lead text-muted">
+                    Know of a government or private subsidy scheme that's not listed on our platform? 
+                    Help fellow citizens by suggesting it here.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-file-alt me-2"></i>Scheme Suggestion Form
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form method="POST">
+                            <div class="row g-3">
+                                <!-- Scheme Information -->
+                                <div class="col-12">
+                                    <h5 class="text-secondary border-bottom pb-2 mb-3">
+                                        <i class="fas fa-info-circle me-2"></i>Scheme Information
+                                    </h5>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="scheme_name" class="form-label fw-semibold">
+                                        Scheme Name <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="scheme_name" 
+                                           name="scheme_name" 
+                                           value="{{ form_data.scheme_name if form_data else '' }}"
+                                           placeholder="Enter the official name of the scheme"
+                                           required>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="description" class="form-label fw-semibold">
+                                        Description <span class="text-danger">*</span>
+                                    </label>
+                                    <textarea class="form-control" 
+                                              id="description" 
+                                              name="description" 
+                                              rows="4" 
+                                              placeholder="Provide a detailed description of what the scheme offers and its objectives"
+                                              required>{{ form_data.description if form_data else '' }}</textarea>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="eligibility" class="form-label fw-semibold">
+                                        Eligibility Criteria <span class="text-danger">*</span>
+                                    </label>
+                                    <textarea class="form-control" 
+                                              id="eligibility" 
+                                              name="eligibility" 
+                                              rows="3" 
+                                              placeholder="Who can apply for this scheme? Include age, income, category requirements, etc."
+                                              required>{{ form_data.eligibility if form_data else '' }}</textarea>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="category" class="form-label fw-semibold">Primary Category</label>
+                                    <select class="form-select" id="category" name="category">
+                                        <option value="">Select a category</option>
+                                        <option value="Poor/Low Income" {% if form_data and form_data.category == 'Poor/Low Income' %}selected{% endif %}>Poor/Low Income</option>
+                                        <option value="Women/Girls" {% if form_data and form_data.category == 'Women/Girls' %}selected{% endif %}>Women/Girls</option>
+                                        <option value="Elderly" {% if form_data and form_data.category == 'Elderly' %}selected{% endif %}>Elderly</option>
+                                        <option value="Widow" {% if form_data and form_data.category == 'Widow' %}selected{% endif %}>Widow</option>
+                                        <option value="Disabled" {% if form_data and form_data.category == 'Disabled' %}selected{% endif %}>Disabled</option>
+                                        <option value="Students" {% if form_data and form_data.category == 'Students' %}selected{% endif %}>Students</option>
+                                        <option value="Entrepreneurs" {% if form_data and form_data.category == 'Entrepreneurs' %}selected{% endif %}>Entrepreneurs</option>
+                                        <option value="Farmers" {% if form_data and form_data.category == 'Farmers' %}selected{% endif %}>Farmers</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="benefits" class="form-label fw-semibold">Benefits/Amount</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="benefits" 
+                                           name="benefits" 
+                                           value="{{ form_data.benefits if form_data else '' }}"
+                                           placeholder="e.g., Rs. 5,000 per month, Free education">
+                                </div>
+                                
+                                <!-- Contact Information -->
+                                <div class="col-12 mt-4">
+                                    <h5 class="text-secondary border-bottom pb-2 mb-3">
+                                        <i class="fas fa-user me-2"></i>Your Contact Information
+                                    </h5>
+                                    <p class="text-muted small">
+                                        We may contact you for additional information about the suggested scheme.
+                                    </p>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="contact_name" class="form-label fw-semibold">
+                                        Your Name <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="contact_name" 
+                                           name="contact_name" 
+                                           value="{{ form_data.contact_name if form_data else '' }}"
+                                           placeholder="Enter your full name"
+                                           required>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="contact_email" class="form-label fw-semibold">Email Address</label>
+                                    <input type="email" 
+                                           class="form-control" 
+                                           id="contact_email" 
+                                           name="contact_email" 
+                                           value="{{ form_data.contact_email if form_data else '' }}"
+                                           placeholder="your.email@example.com">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="contact_phone" class="form-label fw-semibold">Phone Number</label>
+                                    <input type="tel" 
+                                           class="form-control" 
+                                           id="contact_phone" 
+                                           name="contact_phone" 
+                                           value="{{ form_data.contact_phone if form_data else '' }}"
+                                           placeholder="+91 XXXXX XXXXX">
+                                </div>
+                                
+                                <!-- Disclaimer -->
+                                <div class="col-12 mt-4">
+                                    <div class="alert alert-info">
+                                        <h6 class="alert-heading">
+                                            <i class="fas fa-info-circle me-2"></i>Important Note
+                                        </h6>
+                                        <p class="mb-0">
+                                            All suggestions will be reviewed by our team before being added to the platform. 
+                                            We verify the authenticity of schemes to ensure citizens get accurate information.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <div class="col-12">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <a href="{{ url_for('subsidies') }}" class="btn btn-outline-secondary me-md-2">
+                                            <i class="fas fa-arrow-left me-2"></i>Back to Subsidies
+                                        </a>
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-paper-plane me-2"></i>Submit Suggestion
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Help Section -->
+                <div class="card mt-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="fas fa-question-circle me-2"></i>Need Help?
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-primary">What schemes can I suggest?</h6>
+                                <ul class="small text-muted">
+                                    <li>Government subsidies and schemes</li>
+                                    <li>Private sector welfare programs</li>
+                                    <li>NGO-run assistance programs</li>
+                                    <li>State or local government initiatives</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-primary">What information do I need?</h6>
+                                <ul class="small text-muted">
+                                    <li>Official scheme name</li>
+                                    <li>Clear description and objectives</li>
+                                    <li>Eligibility criteria</li>
+                                    <li>Benefits or financial assistance amount</li>
+                                    <li>Target beneficiary category</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Form validation feedback
+    const form = document.querySelector('form');
+    const requiredFields = form.querySelectorAll('[required]');
+    
+    form.addEventListener('submit', function(e) {
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        
+        if (!isValid) {
+            e.preventDefault();
+            // Scroll to first invalid field
+            const firstInvalid = form.querySelector('.is-invalid');
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstInvalid.focus();
+            }
+        }
+    });
+    
+    // Remove invalid class on input
+    requiredFields.forEach(field => {
+        field.addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('is-invalid');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
