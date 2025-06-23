@@ -1,4 +1,4 @@
-# SubsidySeva - Government Subsidy Portal
+# SubsidySeva - Subsidy Portal
 
 A static HTML website that helps Indian citizens discover and access government and private subsidies with an authentic government portal-inspired design.
 
@@ -179,10 +179,6 @@ The design follows Indian government web standards:
 ## License
 
 This project is created for public service and educational purposes. Government subsidy data is sourced from official websites and remains property of respective government departments.
-
-## Support
-
-For technical issues or subsidy data updates, please create an issue in the repository or contact the development team.
 
 ---
 
